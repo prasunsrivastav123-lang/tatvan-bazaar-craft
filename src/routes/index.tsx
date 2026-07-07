@@ -119,34 +119,22 @@ function HomePage() {
             View all →
           </Link>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-3 gap-4 sm:gap-8">
           {categories.map((cat) => {
-            const product = products.find((p) => p.category === cat.slug);
+            const Icon = categoryIcons[cat.slug] ?? Leaf;
             return (
               <Link
                 key={cat.slug}
                 to="/shop/$category"
                 params={{ category: cat.slug }}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-card"
+                className="group flex flex-col items-center gap-4 rounded-2xl p-6 text-center transition-colors hover:bg-secondary/60"
               >
-                <div className="aspect-[4/5] overflow-hidden bg-secondary">
-                  {product && (
-                    <img
-                      src={product.image}
-                      alt={cat.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  )}
+                <div className="flex h-28 w-28 items-center justify-center rounded-full border border-primary/15 bg-background text-primary transition-transform group-hover:scale-105 sm:h-36 sm:w-36">
+                  <Icon className="h-14 w-14 sm:h-16 sm:w-16" strokeWidth={1.4} />
                 </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 via-primary/70 to-transparent p-6 text-primary-foreground">
-                  <p className="text-xs uppercase tracking-widest text-primary-foreground/80">
-                    {cat.tagline}
-                  </p>
-                  <h3 className="mt-1 font-display text-3xl">{cat.name}</h3>
-                  <span className="mt-2 inline-flex items-center gap-1 text-sm">
-                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                <div>
+                  <h3 className="font-display text-xl text-primary sm:text-2xl">{cat.name}</h3>
+                  <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{cat.tagline}</p>
                 </div>
               </Link>
             );
