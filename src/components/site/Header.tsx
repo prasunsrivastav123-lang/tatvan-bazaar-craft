@@ -62,9 +62,10 @@ export function Header() {
               onClick={() => setCatOpen((v) => !v)}
               aria-expanded={catOpen}
             >
-              Categories
+              Shop by Category
               <ChevronDown className={`h-4 w-4 transition-transform ${catOpen ? "rotate-180" : ""}`} />
             </button>
+
             {catOpen && (
               <>
                 {/* invisible bridge so hover doesn't drop */}
