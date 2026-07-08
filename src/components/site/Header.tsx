@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/shop", label: "Shop" },
   { to: "/about", label: "Our Story" },
   { to: "/contact", label: "Contact" },
 ] as const;
+
 
 const categoryIcons: Record<string, typeof Droplet> = {
   honey: Droplet,
@@ -62,9 +62,10 @@ export function Header() {
               onClick={() => setCatOpen((v) => !v)}
               aria-expanded={catOpen}
             >
-              Categories
+              Shop by Category
               <ChevronDown className={`h-4 w-4 transition-transform ${catOpen ? "rotate-180" : ""}`} />
             </button>
+
             {catOpen && (
               <>
                 {/* invisible bridge so hover doesn't drop */}
@@ -129,7 +130,7 @@ export function Header() {
               </Link>
             ))}
             <div className="mt-2 border-t border-border pt-3">
-              <p className="pb-2 text-xs uppercase tracking-wider text-muted-foreground">Categories</p>
+              <p className="pb-2 text-xs uppercase tracking-wider text-muted-foreground">Shop by Category</p>
               <div className="grid grid-cols-3 gap-3">
                 {categories.map((c) => {
                   const Icon = categoryIcons[c.slug] ?? Droplet;

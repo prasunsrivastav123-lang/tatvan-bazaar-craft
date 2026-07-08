@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Leaf, Sprout, ShieldCheck, Truck, Gift, CloudRain, PackageOpen, Boxes, BadgeIndianRupee, Droplet, Milk, Wheat } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, ShieldCheck, Truck, Gift, CloudRain, PackageOpen, Boxes, BadgeIndianRupee, Droplet, Milk, Wheat, Play, Star, Quote } from "lucide-react";
 
 const categoryIcons: Record<string, typeof Droplet> = {
   honey: Droplet,
@@ -155,6 +155,54 @@ function HomePage() {
         </div>
       </section>
 
+      {/* It Takes A Village — story reels */}
+      <section className="bg-[hsl(60_45%_90%)]">
+        <div className="container-x py-20">
+          <h2 className="text-center font-display text-3xl text-primary sm:text-4xl md:text-5xl">
+            It Takes A Village To Make Good Food — Come Take A Peek!
+          </h2>
+          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              { title: "Meet Our Beekeepers", product: products[0], tag: "Behind the Honey" },
+              { title: "Making of A2 Bilona Ghee", product: products[1], tag: "Farm Story" },
+              { title: "Stone-Chakki Atta, Slow & Fresh", product: products[2], tag: "Millers at Work" },
+              { title: "859+ of you asked for it", product: products[0], tag: "Loved by all" },
+              { title: "From our farm to your kitchen", product: products[1], tag: "Journey" },
+            ].map((v, i) => (
+              <div key={i} className="group overflow-hidden rounded-2xl bg-background shadow-card">
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img src={v.product.image} alt={v.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <span className="absolute left-3 top-3 rounded-full bg-primary/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary-foreground">
+                    {v.tag}
+                  </span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-background/85 text-primary shadow-soft transition-transform group-hover:scale-110">
+                      <Play className="h-6 w-6 fill-current" />
+                    </div>
+                  </div>
+                  <p className="absolute bottom-3 left-3 right-3 text-sm font-semibold leading-tight text-primary-foreground">
+                    {v.title}
+                  </p>
+                </div>
+                <Link
+                  to="/product/$slug"
+                  params={{ slug: v.product.slug }}
+                  className="flex items-center gap-3 border-t border-border p-3"
+                >
+                  <img src={v.product.image} alt="" className="h-11 w-11 rounded-md object-cover" />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-xs font-semibold text-primary">{v.product.name}</p>
+                    <p className="text-xs text-muted-foreground">₹ {v.product.price}</p>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       {/* Story band */}
       <section className="bg-primary text-primary-foreground">
         <div className="container-x grid items-center gap-10 py-20 md:grid-cols-2">
@@ -181,6 +229,69 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Press + Reviews */}
+      <section className="bg-[hsl(30_50%_96%)]">
+        <div className="container-x py-20">
+          <div className="rounded-2xl bg-secondary/70 px-6 py-8">
+            <p className="mb-6 text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              As featured in
+            </p>
+            <div className="grid grid-cols-2 items-center justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-5">
+              {["GQ", "Hindustan Times", "Krishi Jagran", "myGov", "The Hindu"].map((name) => (
+                <div key={name} className="font-display text-xl font-semibold tracking-tight text-primary/80 sm:text-2xl">
+                  {name}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-14 text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Kind words</p>
+            <h2 className="mt-2 font-display text-4xl text-primary">What our community says</h2>
+          </div>
+
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                name: "Aarav Sharma",
+                role: "Home Chef, Mumbai",
+                quote:
+                  "Tatvan's raw honey is the real thing — floral, alive, and nothing like the supermarket stuff. My mornings feel different.",
+              },
+              {
+                name: "Priya Nair",
+                role: "Yoga Teacher, Pune",
+                quote:
+                  "The bilona ghee smells exactly like my grandmother's kitchen. You can taste the care in every spoon.",
+              },
+              {
+                name: "Rohan Verma",
+                role: "Baker, Delhi",
+                quote:
+                  "Stone-ground atta made my rotis soft and my breads deeper in flavour. I won't switch back.",
+              },
+            ].map((r) => (
+              <figure key={r.name} className="relative rounded-2xl bg-[hsl(28_85%_78%)] p-6 pt-10 shadow-card">
+                <Quote className="absolute -top-4 left-6 h-8 w-8 rounded-full bg-primary p-1.5 text-primary-foreground" />
+                <div className="mb-3 flex gap-0.5 text-gold">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" strokeWidth={0} />
+                  ))}
+                </div>
+                <blockquote className="text-sm leading-relaxed text-primary-foreground">
+                  "{r.quote}"
+                </blockquote>
+                <figcaption className="mt-5 border-t border-primary-foreground/20 pt-3">
+                  <p className="font-semibold text-primary">{r.name}</p>
+                  <p className="text-xs text-primary/80">{r.role}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </SiteLayout>
   );
 }
