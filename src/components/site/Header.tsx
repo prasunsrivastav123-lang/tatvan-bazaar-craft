@@ -130,7 +130,7 @@ export function Header() {
               </Link>
             ))}
             <div className="mt-2 border-t border-border pt-3">
-              <p className="pb-2 text-xs uppercase tracking-wider text-muted-foreground">Categories</p>
+              <p className="pb-2 text-xs uppercase tracking-wider text-muted-foreground">Shop by Category</p>
               <div className="grid grid-cols-3 gap-3">
                 {categories.map((c) => {
                   const Icon = categoryIcons[c.slug] ?? Droplet;
