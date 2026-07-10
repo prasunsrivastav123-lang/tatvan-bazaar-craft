@@ -61,6 +61,42 @@ export function Header() {
           ))}
           <div
             className="relative"
+            onMouseEnter={() => setStoryOpen(true)}
+            onMouseLeave={() => setStoryOpen(false)}
+          >
+            <button
+              className="inline-flex items-center gap-1 text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+              onClick={() => setStoryOpen((v) => !v)}
+              aria-expanded={storyOpen}
+            >
+              Our Story
+              <ChevronDown className={`h-4 w-4 transition-transform ${storyOpen ? "rotate-180" : ""}`} />
+            </button>
+            {storyOpen && (
+              <>
+                <div className="absolute left-1/2 top-full h-3 w-full -translate-x-1/2" />
+                <div className="absolute left-1/2 top-full z-50 mt-3 w-64 -translate-x-1/2 rounded-2xl border border-border bg-popover p-2 shadow-soft">
+                  <div className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 border-l border-t border-border bg-popover" />
+                  <ul className="relative flex flex-col">
+                    {storyLinks.map((s) => (
+                      <li key={s.to}>
+                        <Link
+                          to={s.to}
+                          onClick={() => setStoryOpen(false)}
+                          className="flex flex-col rounded-lg px-3 py-2 transition-colors hover:bg-secondary/50"
+                        >
+                          <span className="text-sm font-semibold text-primary">{s.label}</span>
+                          <span className="text-[11px] text-muted-foreground">{s.tagline}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
+          <div
+            className="relative"
             onMouseEnter={() => setCatOpen(true)}
             onMouseLeave={() => setCatOpen(false)}
           >
