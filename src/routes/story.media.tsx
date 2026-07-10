@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Newspaper, Award, Quote, Tv, Mic } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import heroImg from "@/assets/hero-farm.jpg";
+import pressImg from "@/assets/story-press-interview.jpg";
+import beekeeperImg from "@/assets/story-beekeeper.jpg";
+import stoneMillImg from "@/assets/story-stone-mill.jpg";
+
 
 export const Route = createFileRoute("/story/media")({
   head: () => ({
