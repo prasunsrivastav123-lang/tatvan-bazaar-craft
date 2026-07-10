@@ -29,6 +29,7 @@ export function Header() {
   const { cartCount, wishlistCount } = useShop();
   const [open, setOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
+  const [storyOpen, setStoryOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
