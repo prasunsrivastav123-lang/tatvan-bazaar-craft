@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Leaf, Sprout, HeartHandshake, Sun, Droplets } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import heroImg from "@/assets/hero-farm.jpg";
+import familyImg from "@/assets/story-farmer-family.jpg";
+import bilonaImg from "@/assets/story-bilona-ghee.jpg";
+import aerialImg from "@/assets/story-farm-aerial.jpg";
+
 
 export const Route = createFileRoute("/story/philosophy")({
   head: () => ({
