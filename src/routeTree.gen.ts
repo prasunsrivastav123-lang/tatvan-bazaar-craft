@@ -17,6 +17,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StoryTraceabilityRouteImport } from './routes/story.traceability'
 import { Route as StoryPhilosophyRouteImport } from './routes/story.philosophy'
+import { Route as StoryMediaRouteImport } from './routes/story.media'
 import { Route as ShopCategoryRouteImport } from './routes/shop.$category'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 
@@ -60,6 +61,11 @@ const StoryPhilosophyRoute = StoryPhilosophyRouteImport.update({
   path: '/story/philosophy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StoryMediaRoute = StoryMediaRouteImport.update({
+  id: '/story/media',
+  path: '/story/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopCategoryRoute = ShopCategoryRouteImport.update({
   id: '/$category',
   path: '/$category',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/wishlist': typeof WishlistRoute
   '/product/$slug': typeof ProductSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
+  '/story/media': typeof StoryMediaRoute
   '/story/philosophy': typeof StoryPhilosophyRoute
   '/story/traceability': typeof StoryTraceabilityRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/wishlist': typeof WishlistRoute
   '/product/$slug': typeof ProductSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
+  '/story/media': typeof StoryMediaRoute
   '/story/philosophy': typeof StoryPhilosophyRoute
   '/story/traceability': typeof StoryTraceabilityRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/wishlist': typeof WishlistRoute
   '/product/$slug': typeof ProductSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
+  '/story/media': typeof StoryMediaRoute
   '/story/philosophy': typeof StoryPhilosophyRoute
   '/story/traceability': typeof StoryTraceabilityRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/product/$slug'
     | '/shop/$category'
+    | '/story/media'
     | '/story/philosophy'
     | '/story/traceability'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/product/$slug'
     | '/shop/$category'
+    | '/story/media'
     | '/story/philosophy'
     | '/story/traceability'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/product/$slug'
     | '/shop/$category'
+    | '/story/media'
     | '/story/philosophy'
     | '/story/traceability'
   fileRoutesById: FileRoutesById
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRouteWithChildren
   WishlistRoute: typeof WishlistRoute
   ProductSlugRoute: typeof ProductSlugRoute
+  StoryMediaRoute: typeof StoryMediaRoute
   StoryPhilosophyRoute: typeof StoryPhilosophyRoute
   StoryTraceabilityRoute: typeof StoryTraceabilityRoute
 }
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoryPhilosophyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/story/media': {
+      id: '/story/media'
+      path: '/story/media'
+      fullPath: '/story/media'
+      preLoaderRoute: typeof StoryMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop/$category': {
       id: '/shop/$category'
       path: '/$category'
@@ -252,6 +272,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRouteWithChildren,
   WishlistRoute: WishlistRoute,
   ProductSlugRoute: ProductSlugRoute,
+  StoryMediaRoute: StoryMediaRoute,
   StoryPhilosophyRoute: StoryPhilosophyRoute,
   StoryTraceabilityRoute: StoryTraceabilityRoute,
 }

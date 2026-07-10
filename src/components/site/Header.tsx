@@ -8,8 +8,14 @@ import { Button } from "@/components/ui/button";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "Our Story" },
   { to: "/contact", label: "Contact" },
+] as const;
+
+const storyLinks = [
+  { to: "/about", label: "Our Story", tagline: "Where Tatvan began" },
+  { to: "/story/philosophy", label: "Our Philosophy", tagline: "What we believe in" },
+  { to: "/story/traceability", label: "Traceability", tagline: "Farm to jar" },
+  { to: "/story/media", label: "Media Recognition", tagline: "Press & awards" },
 ] as const;
 
 
