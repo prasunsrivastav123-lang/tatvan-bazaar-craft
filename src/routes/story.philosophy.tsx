@@ -77,6 +77,23 @@ function PhilosophyPage() {
         </div>
       </section>
 
+      <section className="container-x py-12">
+        <div className="grid gap-4 md:grid-cols-2">
+          <figure className="overflow-hidden rounded-2xl shadow-card">
+            <img src={bilonaImg} alt="Traditional bilona ghee being churned in a clay pot" loading="lazy" width={1024} height={1024} className="h-72 w-full object-cover md:h-96" />
+            <figcaption className="bg-card px-5 py-3 text-sm text-muted-foreground">
+              <span className="font-semibold text-primary">Bilona churning</span> — cultured curd, hand-churned, slow-cooked to golden ghee.
+            </figcaption>
+          </figure>
+          <figure className="overflow-hidden rounded-2xl shadow-card">
+            <img src={aerialImg} alt="Terraced organic farm fields at golden hour" loading="lazy" width={1024} height={1024} className="h-72 w-full object-cover md:h-96" />
+            <figcaption className="bg-card px-5 py-3 text-sm text-muted-foreground">
+              <span className="font-semibold text-primary">Chemical-free fields</span> — terraces worked the way they have been for generations.
+            </figcaption>
+          </figure>
+        </div>
+
+
       <section className="container-x py-16">
         <h2 className="font-display text-4xl text-primary">The way we work</h2>
         <ol className="mt-8 grid gap-6 md:grid-cols-4">
