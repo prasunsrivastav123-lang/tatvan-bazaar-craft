@@ -92,6 +92,9 @@ function PhilosophyPage() {
             </figcaption>
           </figure>
         </div>
+      </section>
+
+
 
 
       <section className="container-x py-16">
