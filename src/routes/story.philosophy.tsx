@@ -51,8 +51,9 @@ function PhilosophyPage() {
           </p>
         </div>
         <div className="mt-8 md:mt-0">
-          <img src={heroImg} alt="Fields" className="h-full w-full rounded-2xl object-cover shadow-card" />
+          <img src={familyImg} alt="Partner farmer family in their fields" loading="lazy" width={1024} height={1024} className="h-full w-full rounded-2xl object-cover shadow-card" />
         </div>
+
       </section>
 
       <section className="bg-secondary/40">
