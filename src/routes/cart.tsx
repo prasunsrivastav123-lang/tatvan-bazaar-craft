@@ -99,9 +99,12 @@ function CartPage() {
                 <dd className="font-display text-xl text-primary">{formatINR(total)}</dd>
               </div>
             </dl>
-            <button className="mt-6 w-full rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-95">
-              Proceed to checkout
-            </button>
+          <Link
+  to="/checkout"
+  className="mt-6 block w-full rounded-full bg-primary py-3 text-center text-sm font-semibold text-primary-foreground hover:opacity-95"
+>
+  Proceed to checkout
+</Link>
             <p className="mt-3 text-center text-xs text-muted-foreground">
               Checkout will be enabled once payments are connected.
             </p>

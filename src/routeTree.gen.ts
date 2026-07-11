@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as OrderSuccessRouteImport } from './routes/order-success'
+import { Route as OrderFailedRouteImport } from './routes/order-failed'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -31,9 +34,24 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderSuccessRoute = OrderSuccessRouteImport.update({
+  id: '/order-success',
+  path: '/order-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderFailedRoute = OrderFailedRouteImport.update({
+  id: '/order-failed',
+  path: '/order-failed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -81,7 +99,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/order-failed': typeof OrderFailedRoute
+  '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRouteWithChildren
   '/wishlist': typeof WishlistRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -94,7 +115,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/order-failed': typeof OrderFailedRoute
+  '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRouteWithChildren
   '/wishlist': typeof WishlistRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -108,7 +132,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/order-failed': typeof OrderFailedRoute
+  '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRouteWithChildren
   '/wishlist': typeof WishlistRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -123,7 +150,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cart'
+    | '/checkout'
     | '/contact'
+    | '/order-failed'
+    | '/order-success'
     | '/shop'
     | '/wishlist'
     | '/product/$slug'
@@ -136,7 +166,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cart'
+    | '/checkout'
     | '/contact'
+    | '/order-failed'
+    | '/order-success'
     | '/shop'
     | '/wishlist'
     | '/product/$slug'
@@ -149,7 +182,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cart'
+    | '/checkout'
     | '/contact'
+    | '/order-failed'
+    | '/order-success'
     | '/shop'
     | '/wishlist'
     | '/product/$slug'
@@ -163,7 +199,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  OrderFailedRoute: typeof OrderFailedRoute
+  OrderSuccessRoute: typeof OrderSuccessRoute
   ShopRoute: typeof ShopRouteWithChildren
   WishlistRoute: typeof WishlistRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -188,11 +227,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order-success': {
+      id: '/order-success'
+      path: '/order-success'
+      fullPath: '/order-success'
+      preLoaderRoute: typeof OrderSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order-failed': {
+      id: '/order-failed'
+      path: '/order-failed'
+      fullPath: '/order-failed'
+      preLoaderRoute: typeof OrderFailedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -268,7 +328,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  OrderFailedRoute: OrderFailedRoute,
+  OrderSuccessRoute: OrderSuccessRoute,
   ShopRoute: ShopRouteWithChildren,
   WishlistRoute: WishlistRoute,
   ProductSlugRoute: ProductSlugRoute,
@@ -279,3 +342,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
