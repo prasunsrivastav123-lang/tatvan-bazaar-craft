@@ -125,60 +125,33 @@ function HomePage() {
               </div>
             </Link>
 
-            {/* Right top: price drop */}
+            {/* Right: combined landscape promo */}
             <Link
               to="/shop"
-              className="group relative overflow-hidden rounded-2xl bg-[hsl(40_50%_92%)] shadow-card"
+              className="group relative overflow-hidden rounded-2xl bg-[hsl(40_50%_92%)] shadow-card md:row-span-2"
             >
               <img
-                src={promoPriceDropImg}
-                alt="Permanent price drop"
-                className="absolute inset-0 h-full w-full object-cover opacity-90"
+                src={promoRightImg}
+                alt="Permanent price drop and membership discounts"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[hsl(40_50%_92%)] via-[hsl(40_50%_92%)]/70 to-transparent" />
-              <div className="relative flex h-full flex-col justify-between p-5">
-                <div>
-                  <p className="font-display text-lg leading-tight text-primary md:text-xl">
-                    We're permanently<br />reducing prices
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-[hsl(15_75%_50%)]">
-                    on our five bestsellers
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="rounded-md bg-[hsl(15_75%_50%)] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
-                    Price drop
-                  </span>
-                  <span className="text-[11px] font-semibold text-primary underline underline-offset-4">
-                    Buy at new prices →
-                  </span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Right bottom: discounts */}
-            <Link
-              to="/shop"
-              className="group relative overflow-hidden rounded-2xl bg-[hsl(40_50%_92%)] shadow-card"
-            >
-              <img
-                src={promoDiscountsImg}
-                alt="Loyalty discounts"
-                className="absolute inset-0 h-full w-full object-cover opacity-90"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-[hsl(40_50%_92%)] via-[hsl(40_50%_92%)]/70 to-transparent" />
-              <div className="relative flex h-full flex-col items-end justify-center p-5 text-right">
-                <p className="font-display text-xl font-bold uppercase text-[hsl(15_75%_50%)]">
-                  Love discounts?
-                </p>
-                <p className="mt-1 max-w-[60%] text-[11px] font-semibold uppercase tracking-wide text-primary">
-                  Get a permanent 12% off &amp; many more surprises
-                </p>
-                <span className="mt-2 text-[11px] font-semibold text-primary underline underline-offset-4">
-                  Join membership →
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+              <div className="absolute left-5 top-5 flex flex-col gap-2">
+                <span className="w-fit rounded-md bg-[hsl(15_75%_50%)] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                  Price drop
                 </span>
+                <span className="w-fit rounded-md bg-[hsl(45_90%_65%)] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[hsl(25_55%_20%)]">
+                  Membership 12% off
+                </span>
+              </div>
+              <div className="absolute bottom-5 left-5 right-5 text-primary-foreground">
+                <h3 className="font-display text-2xl leading-tight md:text-3xl">
+                  Lower prices. Bigger rewards.
+                </h3>
+                <p className="mt-1 text-xs opacity-90">
+                  Bestsellers priced down &amp; extra perks for members.
+                </p>
               </div>
             </Link>
           </div>
