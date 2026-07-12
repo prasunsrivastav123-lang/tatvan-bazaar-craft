@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Leaf, Sprout, ShieldCheck, Truck, Gift, CloudRain, PackageOpen, Boxes, BadgeIndianRupee, Droplet, Milk, Wheat, Play, Star } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, ShieldCheck, Truck, Gift, CloudRain, PackageOpen, Boxes, BadgeIndianRupee, Droplet, Milk, Wheat, Play, Star, ShoppingCart } from "lucide-react";
+import { toast } from "sonner";
 
 const categoryIcons: Record<string, typeof Droplet> = {
   honey: Droplet,
@@ -9,6 +10,7 @@ const categoryIcons: Record<string, typeof Droplet> = {
 import { SiteLayout } from "@/components/site/Layout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { categories, products } from "@/data/products";
+import { useShop } from "@/store/shop-store";
 import heroImg from "@/assets/hero-farm.jpg";
 import promoMonsoonImg from "@/assets/promo-monsoon-lifestyle.jpg";
 import promoRightImg from "@/assets/promo-right-combined.jpg";
