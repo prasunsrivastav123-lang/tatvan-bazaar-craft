@@ -95,51 +95,38 @@ export function ProductCard({ product }: { product: Product }) {
             </div>
           )}
 
-          {added ? (
-            <div className="flex items-center justify-between rounded-md bg-primary px-2 py-1.5 text-primary-foreground">
-              <button
-                type="button"
-                aria-label="Decrease quantity"
-                onClick={() => {
-                  const next = Math.max(0, qty - 1);
-                  if (next === 0) {
-                    setAdded(false);
-                    setQty(1);
-                  } else {
-                    setQty(next);
-                    addToCart(product.id, weight, -1);
-                  }
-                }}
-                className="rounded p-2 hover:bg-white/10"
-              >
-                <Minus className="h-4 w-4" />
-              </button>
-              <span className="text-sm font-semibold tracking-wide">QTY {qty}</span>
-              <button
-                type="button"
-                aria-label="Increase quantity"
-                onClick={() => {
-                  setQty(qty + 1);
-                  addToCart(product.id, weight, 1);
-                }}
-                className="rounded p-2 hover:bg-white/10"
-              >
-                <Plus className="h-4 w-4" />
-              </button>
-            </div>
-          ) : (
+          <div className="flex items-center justify-between rounded-md border border-border bg-background px-2 py-1.5">
             <button
               type="button"
-              onClick={() => {
-                addToCart(product.id, weight, 1);
-                setAdded(true);
-                toast.success(`${product.name} added to cart`);
-              }}
-              className="w-full rounded-md bg-primary px-4 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01]"
+              aria-label="Decrease quantity"
+              onClick={() => setQty((q) => Math.max(1, q - 1))}
+              className="rounded p-1.5 text-foreground/70 hover:bg-secondary hover:text-primary"
             >
-              Add to cart
+              <Minus className="h-4 w-4" />
             </button>
-          )}
+            <span className="text-sm font-semibold tracking-wide text-foreground">QTY {qty}</span>
+            <button
+              type="button"
+              aria-label="Increase quantity"
+              onClick={() => setQty((q) => q + 1)}
+              className="rounded p-1.5 text-foreground/70 hover:bg-secondary hover:text-primary"
+            >
+              <Plus className="h-4 w-4" />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              addToCart(product.id, weight, qty);
+              setAdded(true);
+              toast.success(`${product.name} added to cart`);
+            }}
+            className="w-full rounded-md bg-primary px-4 py-3 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01]"
+          >
+            {added ? "Added ✓  Add more" : "Add to cart"}
+          </button>
+
         </div>
       </div>
     </div>
