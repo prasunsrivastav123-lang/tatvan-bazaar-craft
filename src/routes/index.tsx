@@ -30,22 +30,22 @@ function HomePage() {
     <SiteLayout>
       {/* Quick category stickers */}
       <section className="border-b border-border bg-secondary/30">
-        <div className="container-x py-8">
-          <ul className="flex flex-wrap items-start justify-center gap-6 sm:gap-10">
+        <div className="container-x py-5 sm:py-8">
+          <ul className="flex snap-x gap-5 overflow-x-auto scrollbar-hide sm:flex-wrap sm:justify-center sm:gap-6 sm:overflow-visible lg:gap-10">
             {quickLinks.map(({ icon: Icon, label, to, tone }) => (
-              <li key={label} className="flex w-24 flex-col items-center gap-3 text-center">
+              <li key={label} className="flex w-20 shrink-0 snap-center flex-col items-center gap-2 text-center sm:w-24 sm:gap-3">
                 <Link
                   to={to}
                   aria-label={label}
-                  className={`flex h-20 w-20 items-center justify-center rounded-full shadow-soft transition-transform hover:scale-105 ${
+                  className={`flex h-16 w-16 items-center justify-center rounded-full shadow-soft transition-transform hover:scale-105 sm:h-20 sm:w-20 ${
                     tone === "brown"
                       ? "bg-[hsl(25_55%_20%)] text-[hsl(45_70%_75%)]"
                       : "bg-primary text-[hsl(45_70%_75%)]"
                   }`}
                 >
-                  <Icon className="h-9 w-9" strokeWidth={1.6} />
+                  <Icon className="h-7 w-7 sm:h-9 sm:w-9" strokeWidth={1.6} />
                 </Link>
-                <span className="text-xs font-semibold tracking-wide text-primary">
+                <span className="text-[11px] font-semibold leading-tight tracking-wide text-primary sm:text-xs">
                   {label}
                 </span>
               </li>
