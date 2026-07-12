@@ -301,9 +301,22 @@ function HomePage() {
                   <img src={v.product.image} alt="" className="h-11 w-11 rounded-md object-cover" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-xs font-semibold text-primary">{v.product.name}</p>
-                    <p className="text-xs text-muted-foreground">₹ {v.product.price}</p>
+                    <p className="text-xs text-muted-foreground">{formatINR(v.product.price)}</p>
                   </div>
                 </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    addToCart(v.product.id, v.product.weightOptions[0], 1);
+                    toast.success(`${v.product.name} added to cart`);
+                  }}
+                  className="flex w-full items-center justify-between border-t border-border bg-primary px-3 py-2.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  <span className="w-full text-center">Add to cart</span>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded bg-primary-foreground/15">
+                    <ShoppingCart className="h-4 w-4" />
+                  </span>
+                </button>
               </div>
             ))}
           </div>
