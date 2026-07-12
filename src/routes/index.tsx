@@ -9,7 +9,7 @@ const categoryIcons: Record<string, typeof Droplet> = {
 };
 import { SiteLayout } from "@/components/site/Layout";
 import { ProductCard } from "@/components/site/ProductCard";
-import { categories, products } from "@/data/products";
+import { categories, formatINR, products } from "@/data/products";
 import { useShop } from "@/store/shop-store";
 import heroImg from "@/assets/hero-farm.jpg";
 import promoMonsoonImg from "@/assets/promo-monsoon-lifestyle.jpg";
