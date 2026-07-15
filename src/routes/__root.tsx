@@ -8,10 +8,13 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShopProvider } from "@/store/shop-store";
+import { AuthProvider } from "@/context/AuthContext";
+import { GuestGate } from "@/components/auth/GuestGate";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -62,12 +65,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Try again
           </button>
-          <a
-            href="/"
+
+          <Link
+            to="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             Go home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -128,13 +132,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? "";
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ShopProvider>
-        <Outlet />
-        <Toaster />
-      </ShopProvider>
+      <GoogleOAuthProvider clientId={googleClientId}>
+        <AuthProvider>
+          <ShopProvider>
+            <GuestGate>
+              <Outlet />
+              <Toaster />
+            </GuestGate>
+          </ShopProvider>
+        </AuthProvider>
+      </GoogleOAuthProvider>
     </QueryClientProvider>
   );
 }

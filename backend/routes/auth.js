@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import { OAuth2Client } from "google-auth-library";
 
 import User from "../models/User.js";
+import { protect } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -18,9 +19,15 @@ function createToken(user) {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "7d",
+      expiresIn: "30d",
     }
   );
+}
+
+function toSafeUser(user) {
+  const obj = user.toObject ? user.toObject() : user;
+  delete obj.password;
+  return obj;
 }
 
 /* ===========================================
@@ -58,7 +65,7 @@ router.post("/register", async (req, res) => {
     res.json({
       success: true,
       token,
-      user,
+      user: toSafeUser(user),
     });
   } catch (err) {
     console.error(err);
@@ -103,7 +110,7 @@ router.post("/login", async (req, res) => {
     res.json({
       success: true,
       token,
-      user,
+      user: toSafeUser(user),
     });
   } catch (err) {
     console.error(err);
@@ -150,7 +157,7 @@ router.post("/google", async (req, res) => {
     res.json({
       success: true,
       token,
-      user,
+      user: toSafeUser(user),
     });
   } catch (err) {
     console.error(err);
@@ -160,6 +167,17 @@ router.post("/google", async (req, res) => {
       message: err.message,
     });
   }
+});
+
+/* ===========================================
+              CURRENT USER
+=========================================== */
+
+router.get("/me", protect, async (req, res) => {
+  res.json({
+    success: true,
+    user: req.user,
+  });
 });
 
 export default router;
